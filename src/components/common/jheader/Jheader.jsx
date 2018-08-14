@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {HeaderWrapper, Logo, Nav, NavItem, NavSearch} from './style';
+import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button} from './style';
 
 class Jheader extends Component {
   render() {
@@ -13,6 +13,10 @@ class Jheader extends Component {
           <NavItem className="right">Aa</NavItem>
           <NavSearch></NavSearch>
         </Nav>
+        <Addition className="aaa">
+          <Button className="writting">写文章</Button>
+          <Button className="reg">注册</Button>
+        </Addition>
       </HeaderWrapper>
     )
   }
