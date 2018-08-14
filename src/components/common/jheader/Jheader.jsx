@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import {HeaderWrapper} from './style';
+import {HeaderWrapper, Logo, Nav, NavItem, NavSearch} from './style';
 
 class Jheader extends Component {
   render() {
     return (
       <HeaderWrapper>
-        header 组件
+        <Logo></Logo>
+        <Nav>
+          <NavItem className="left active">首页</NavItem>
+          <NavItem className="left">下载APP</NavItem>
+          <NavItem className="right">登陆</NavItem>
+          <NavItem className="right">Aa</NavItem>
+          <NavSearch></NavSearch>
+        </Nav>
       </HeaderWrapper>
     )
   }

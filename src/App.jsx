@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Jheader from './components/common/jheader/Jheader';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Jheader></Jheader>
-      </div>
+      </Fragment>
     );
   }
 }
