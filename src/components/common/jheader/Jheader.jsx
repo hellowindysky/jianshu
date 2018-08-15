@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
-import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button} from './style';
+import {HeaderWrapper, Logo, Nav, NavItem, SearchWrapper, NavSearch, Addition, Button} from './style';
 
 class Jheader extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false
+    }
+  }
+
+  handleIptFocus = () => {
+    this.setState({focused: true});
+  }
+
+  handleIptBlur = () => {
+    this.setState({focused: false});
+  }
+
   render() {
     return (
       <HeaderWrapper>
@@ -13,7 +29,13 @@ class Jheader extends Component {
           <NavItem className="right">
             <i className="iconfont">&#xe636;</i>
           </NavItem>
-          <NavSearch></NavSearch>
+          <SearchWrapper>
+            <NavSearch className={this.state.focused ? 'focused' : ''}
+             onFocus={this.handleIptFocus}
+             onBlur={this.handleIptBlur}>
+            </NavSearch>
+            <i className={this.state.focused ? 'focused iconfont' : 'iconfont'}>&#xe617;</i>
+          </SearchWrapper>
         </Nav>
         <Addition className="aaa">
           <Button className="writting">
