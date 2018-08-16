@@ -6,18 +6,20 @@ const defaultState = {
 };
 
 export default (state = defaultState, action) => {
-  if (action.type === SEARCH_FOCUS) {
-    let newState = {...state};
-    newState.focused = action.data;
-    return newState;
-  } else if (action.type === SEARCH_BLUR) {
-    let newState = {...state};
-    newState.focused = action.data;
-    return newState;
-  } else if (action.type === LIST_FOCUS) {
-    let newState = {...state};
-    newState.list = action.data;
-    return newState;
+
+  let newState = {...state};
+  switch (action.type) {
+    case SEARCH_FOCUS:
+      newState.focused = action.data;
+      return newState;
+    case SEARCH_BLUR:
+      newState.focused = action.data;
+      return newState;
+    case LIST_FOCUS:
+      newState.list = action.data;
+      return newState;
+    default:
+      return state;
   }
-  return state;
+
 }
