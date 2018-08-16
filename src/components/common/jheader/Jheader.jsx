@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {HeaderWrapper, Logo, Nav, NavItem, SearchWrapper, NavSearch, Addition, Button} from './style';
 
-import {handleIptFocus, handleIptBlur} from './store/actions';
+import { headerActions } from './store';
+const { handleIptFocus, handleIptBlur } = headerActions;
 
 const Jheader = (props) => {
   return (
