@@ -21,8 +21,9 @@ const { handleIptFocus, handleIptBlur, getList } = headerActions;
 
 class Jheader extends Component {
 
-  getListArea = (show, list) => {
-    if (show) {
+  getListArea = () => {
+    const { focused, list } = this.props;
+    if (focused) {
       return (
         <SearchInfo>
           <SearchInfoTitle>
@@ -45,6 +46,7 @@ class Jheader extends Component {
 
   render() {
     console.log(this.props);
+    const { focused, handleIptFocus, handleIptBlur } = this.props;
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -56,12 +58,12 @@ class Jheader extends Component {
             <i className="iconfont">&#xe636;</i>
           </NavItem>
           <SearchWrapper>
-            <NavSearch className={this.props.focused ? 'focused' : ''}
-             onFocus={this.props.handleIptFocus}
-             onBlur={this.props.handleIptBlur}>
+            <NavSearch className={focused ? 'focused' : ''}
+             onFocus={handleIptFocus}
+             onBlur={handleIptBlur}>
             </NavSearch>
-            <i className={this.props.focused ? 'focused iconfont' : 'iconfont'}>&#xe617;</i>
-            {this.getListArea(this.props.focused, this.props.list)}
+            <i className={focused ? 'focused iconfont' : 'iconfont'}>&#xe617;</i>
+            {this.getListArea()}
           </SearchWrapper>
         </Nav>
         <Addition className="aaa">
