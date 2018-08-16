@@ -57,8 +57,8 @@ class Jheader extends Component {
           </NavItem>
           <SearchWrapper>
             <NavSearch className={this.props.focused ? 'focused' : ''}
-            onFocus={() => {this.props.handleIptFocus(true);this.props.getList()}}
-            onBlur={() => {this.props.handleIptBlur(false)}}>
+             onFocus={this.props.handleIptFocus}
+             onBlur={this.props.handleIptBlur}>
             </NavSearch>
             <i className={this.props.focused ? 'focused iconfont' : 'iconfont'}>&#xe617;</i>
             {this.getListArea(this.props.focused, this.props.list)}
@@ -75,10 +75,20 @@ class Jheader extends Component {
   }
 }
 
-export default connect((state) => {
+const mapStateToProps = (state) => {
   return {...state.headerReducer}
-}, {
-  handleIptFocus,
-  handleIptBlur,
-  getList
-})(Jheader);
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleIptFocus() {
+      dispatch(handleIptFocus(true));
+      dispatch(getList());
+    },
+    handleIptBlur() {
+      dispatch(handleIptBlur(false));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jheader);
