@@ -1,7 +1,8 @@
-import { SEARCH_FOCUS, SEARCH_BLUR } from './action-types';
+import { SEARCH_FOCUS, SEARCH_BLUR, LIST_FOCUS } from './action-types';
 
 const defaultState = {
-  focused: false
+  focused: false,
+  list: []
 };
 
 export default (state = defaultState, action) => {
@@ -12,6 +13,10 @@ export default (state = defaultState, action) => {
   } else if (action.type === SEARCH_BLUR) {
     let newState = {...state};
     newState.focused = action.data;
+    return newState;
+  } else if (action.type === LIST_FOCUS) {
+    let newState = {...state};
+    newState.list = action.data;
     return newState;
   }
   return state;
