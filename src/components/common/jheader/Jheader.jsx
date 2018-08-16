@@ -22,7 +22,13 @@ const { handleIptFocus, handleIptBlur, getList } = headerActions;
 class Jheader extends Component {
 
   getListArea = () => {
-    const { focused, list } = this.props;
+    const { focused, list, page, totalPage } = this.props;
+    let subList = [];
+
+    for (let i = (page - 1) * 10; i < page * 10; i++) {
+      subList.push(<SearchInfoItem key={i}>{list[i]}</SearchInfoItem>)
+    }
+
     if (focused) {
       return (
         <SearchInfo>
@@ -31,11 +37,7 @@ class Jheader extends Component {
             <SearchInfoSwitch>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {
-              list.map((item) => {
-                return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-              })
-            }
+            {subList}
           </SearchInfoList>
         </SearchInfo>
       )

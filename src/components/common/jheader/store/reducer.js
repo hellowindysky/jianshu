@@ -2,7 +2,9 @@ import { SEARCH_FOCUS, SEARCH_BLUR, LIST_FOCUS } from './action-types';
 
 const defaultState = {
   focused: false,
-  list: []
+  list: [],
+  page: 1,
+  totalPage: 1
 };
 
 export default (state = defaultState, action) => {
