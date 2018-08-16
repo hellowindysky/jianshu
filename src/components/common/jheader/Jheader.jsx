@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {HeaderWrapper, Logo, Nav, NavItem, SearchWrapper, NavSearch, Addition, Button} from './style';
 
-import {handleIptFocus, handleIptBlur} from '../../../store/actions';
+import {handleIptFocus, handleIptBlur} from './store/actions';
 
 const Jheader = (props) => {
   return (
@@ -34,7 +34,7 @@ const Jheader = (props) => {
 }
 
 export default connect((state) => {
-  return {...state.focusReducer}
+  return {...state.headerReducer}
 }, {
   handleIptFocus,
   handleIptBlur
