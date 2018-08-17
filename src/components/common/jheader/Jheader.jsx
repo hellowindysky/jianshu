@@ -24,9 +24,11 @@ class Jheader extends Component {
   getListArea = () => {
     const { focused, list, page, totalPage } = this.props;
     let subList = [];
-
     for (let i = (page - 1) * 10; i < page * 10; i++) {
-      subList.push(<SearchInfoItem key={i}>{list[i]}</SearchInfoItem>)
+      if (list.length === 0) {
+        break;
+      }
+      subList.push(<SearchInfoItem key={list[i]}>{list[i]}</SearchInfoItem>)
     }
 
     if (focused) {
@@ -80,7 +82,9 @@ class Jheader extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {...state.headerReducer}
+  return {...(state.toJS().headerReducer)}
+  // return {focused: state.get('headerReducer').get('focused')}
+  // return {...state.headerReducer}
 }
 
 const mapDispatchToProps = (dispatch) => {
