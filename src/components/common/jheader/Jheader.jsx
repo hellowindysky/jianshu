@@ -17,26 +17,27 @@ import {
 } from './style';
 
 import { headerActions } from './store';
-const { handleIptFocus, handleIptBlur, getList } = headerActions;
 
 class Jheader extends Component {
 
   getListArea = () => {
-    const { focused, list, page, totalPage } = this.props;
+    const { focused, mouseInList, list, page, totalPage, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
     let subList = [];
     for (let i = (page - 1) * 10; i < page * 10; i++) {
-      if (list.length === 0) {
+      if (list.length === 0 || !list[i]) {
         break;
       }
       subList.push(<SearchInfoItem key={list[i]}>{list[i]}</SearchInfoItem>)
     }
 
-    if (focused) {
+    if (focused || mouseInList) {
       return (
-        <SearchInfo>
+        <SearchInfo
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => {handleChangePage(page, totalPage)}}>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {subList}
@@ -90,11 +91,24 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleIptFocus() {
-      dispatch(handleIptFocus(true));
-      dispatch(getList());
+      dispatch(headerActions.handleIptFocus(true));
+      dispatch(headerActions.getList());
     },
     handleIptBlur() {
-      dispatch(handleIptBlur(false));
+      dispatch(headerActions.handleIptBlur(false));
+    },
+    handleMouseEnter() {
+      dispatch(headerActions.handleMouseEnter(true));
+    },
+    handleMouseLeave() {
+      dispatch(headerActions.handleMouseLeave(false));
+    },
+    handleChangePage(page, totalPage) {
+      if (page < totalPage) {
+        dispatch(headerActions.handleChangePage(page + 1));
+      } else {
+        dispatch(headerActions.handleChangePage(1));
+      }
     }
   }
 }
