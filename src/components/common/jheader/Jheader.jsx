@@ -37,7 +37,9 @@ class Jheader extends Component {
          onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch onClick={() => {handleChangePage(page, totalPage)}}>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => {handleChangePage(page, totalPage, this.spinIcon)}}>
+              <i ref={(icon) => {this.spinIcon = icon}} className="iconfont spin">&#xe851;</i>换一批
+            </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {subList}
@@ -51,7 +53,7 @@ class Jheader extends Component {
 
   render() {
     console.log(this.props);
-    const { focused, handleIptFocus, handleIptBlur } = this.props;
+    const { focused, list, handleIptFocus, handleIptBlur } = this.props;
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -64,10 +66,10 @@ class Jheader extends Component {
           </NavItem>
           <SearchWrapper>
             <NavSearch className={focused ? 'focused' : ''}
-             onFocus={handleIptFocus}
+             onFocus={() => {handleIptFocus(list)}}
              onBlur={handleIptBlur}>
             </NavSearch>
-            <i className={focused ? 'focused iconfont' : 'iconfont'}>&#xe617;</i>
+            <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe617;</i>
             {this.getListArea()}
           </SearchWrapper>
         </Nav>
@@ -90,9 +92,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleIptFocus() {
+    handleIptFocus(list) {
+      list.length === 0 && dispatch(headerActions.getList());
       dispatch(headerActions.handleIptFocus(true));
-      dispatch(headerActions.getList());
     },
     handleIptBlur() {
       dispatch(headerActions.handleIptBlur(false));
@@ -103,7 +105,9 @@ const mapDispatchToProps = (dispatch) => {
     handleMouseLeave() {
       dispatch(headerActions.handleMouseLeave(false));
     },
-    handleChangePage(page, totalPage) {
+    handleChangePage(page, totalPage, spin) {
+      let oldAng = spin.style.transform.replace(/[^0-9]/ig, '');
+      spin.style.transform = `rotate(${Number(oldAng) + 360}deg)`;
       if (page < totalPage) {
         dispatch(headerActions.handleChangePage(page + 1));
       } else {
