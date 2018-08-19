@@ -1,5 +1,28 @@
 import styled from 'styled-components';
 
+import banner1 from '../../../statics/banner1.png';
+import banner2 from '../../../statics/banner2.png';
+import banner3 from '../../../statics/banner3.png';
+import banner4 from '../../../statics/banner4.png';
+import banner5 from '../../../statics/banner5.png';
+
+let bgImg = (num) => {
+	switch (num) {
+		case 1:
+			return banner1;	
+		case 2:
+			return banner2;	
+		case 3:
+			return banner3;	
+		case 4:
+			return banner4;	
+		case 5:
+			return banner5;	
+		default:
+		return null
+	}
+}
+
 export const HomeWrapper = styled.div`
 	overflow: hidden;
 	width: 960px;
@@ -87,7 +110,8 @@ export const RecommendWrapper = styled.div`
 export const RecommendItem = styled.div`
 	width: 280px;
 	height: 50px;
-	background: url(${(props) => props.imgUrl});
+	/* background: url(${(props) => props.imgUrl}); */
+	background: url(${(props) => bgImg(props.imgUrl) });
 	background-size: contain;
 `;
 
