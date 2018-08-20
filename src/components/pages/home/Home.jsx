@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import List from './components/List';
 import Recommend from './components/Recommend';
 import Topic from './components/Topic';
 import Writer from './components/Writer';
-import { HomeWrapper, HomeLeft, HomeRight } from './style'
+import { HomeWrapper, HomeLeft, HomeRight } from './style';
+
+import { homeActions } from './store';
 
 class Home extends Component {
+
+  componentDidMount() {
+    this.props.getHomeData();
+  }
   
   render() {
     return (
@@ -26,4 +33,16 @@ class Home extends Component {
 
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getHomeData() {
+      dispatch(homeActions.getHomeData())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 
 import { ListItem, ListInfo, LoadMore } from '../style';
 
+import { homeActions } from '../store';
+
 class List extends Component {
   
   render() {
-    const { list } = this.props;
+    const { list, getMoreList } = this.props;
     return (
       <div>
         {
@@ -22,7 +24,7 @@ class List extends Component {
             )
           })
         }
-        
+        <LoadMore onClick={getMoreList}>加载更多</LoadMore>
       </div>
     )
   }
@@ -33,4 +35,12 @@ const mapStateToProps = (state) => {
   return {list : state.toJS().homeReducer.articList}
 }
 
-export default connect(mapStateToProps)(List);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMoreList() {
+      dispatch(homeActions.getMoreList());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

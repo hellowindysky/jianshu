@@ -52,7 +52,6 @@ class Jheader extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { focused, list, handleIptFocus, handleIptBlur } = this.props;
     return (
       <HeaderWrapper>

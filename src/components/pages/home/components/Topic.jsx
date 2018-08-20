@@ -6,7 +6,6 @@ import { TopicWrapper, TopicItem } from '../style';
 class Topic extends Component {
   
   render() {
-    console.log(this.props);
     const { topicList } = this.props;
     return (
       <TopicWrapper>
