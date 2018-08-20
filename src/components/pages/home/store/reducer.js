@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { CHANGE_HOME_DATA, ADD_HOME_LIST } from './action-types';
+import { CHANGE_HOME_DATA, ADD_HOME_LIST, TOGGLE_TOP_SHOW } from './action-types';
 
 const defaultState = fromJS({
   topicList: [],
@@ -18,7 +18,9 @@ export default (state = defaultState, action) => {
         recommendList: action.data.get('recommendList')
       });
     case ADD_HOME_LIST:
-      return state.set('articList', state.get('articList').concat(action.data))
+      return state.set('articList', state.get('articList').concat(action.data));
+    case TOGGLE_TOP_SHOW:
+      return state.set('showScroll', action.data);
     default:
       return state;
   }

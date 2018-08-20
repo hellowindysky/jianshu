@@ -17,6 +17,11 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.getHomeData();
+    window.addEventListener('scroll', this.props.changeScrollShow);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.props.changeScrollShow)
   }
   
   render() {
@@ -46,6 +51,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getHomeData() {
       dispatch(homeActions.getHomeData())
+    },
+    changeScrollShow() {
+      if (window.scrollY >= 100) {
+        dispatch(homeActions.toggleTopShow(true));
+      } else {
+        dispatch(homeActions.toggleTopShow(false));
+      }
     }
   }
 }
