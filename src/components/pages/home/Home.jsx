@@ -5,11 +5,15 @@ import List from './components/List';
 import Recommend from './components/Recommend';
 import Topic from './components/Topic';
 import Writer from './components/Writer';
-import { HomeWrapper, HomeLeft, HomeRight } from './style';
+import { HomeWrapper, HomeLeft, HomeRight, BackTop } from './style';
 
 import { homeActions } from './store';
 
 class Home extends Component {
+
+  handleScrollTop = () => {
+    window.scrollTo(0, 0);
+  }
 
   componentDidMount() {
     this.props.getHomeData();
@@ -27,6 +31,7 @@ class Home extends Component {
           <Recommend />
 					<Writer />
         </HomeRight>
+        {this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : null}
       </HomeWrapper>
     )
   }
@@ -34,7 +39,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {showScroll: state.getIn(['homeReducer', 'showScroll'])}
 }
 
 const mapDispatchToProps = (dispatch) => {

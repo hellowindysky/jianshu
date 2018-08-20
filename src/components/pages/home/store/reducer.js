@@ -4,7 +4,8 @@ import { CHANGE_HOME_DATA, ADD_HOME_LIST } from './action-types';
 const defaultState = fromJS({
   topicList: [],
   articList: [],
-  recommendList: []
+  recommendList: [],
+  showScroll: false
 });
 
 export default (state = defaultState, action) => {
