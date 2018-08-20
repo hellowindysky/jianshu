@@ -8,16 +8,16 @@ import Detail from './components/pages/detail/Detail';
 class App extends Component {
   render() {
     return (
-      <Fragment>
-        <Jheader></Jheader>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Fragment>
+          <Jheader></Jheader>
           <Switch>
             <Route path="/home" component={Home}></Route>
-            <Route path="/detail" component={Detail}></Route>
+            <Route path="/detail/:id" component={Detail}></Route>
             <Redirect to="/home"></Redirect>
           </Switch>
-        </BrowserRouter>
-      </Fragment>
+        </Fragment>
+      </BrowserRouter>
     );
   }
 }

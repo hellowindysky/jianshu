@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { ListItem, ListInfo, LoadMore } from '../style';
 
@@ -14,13 +15,15 @@ class List extends Component {
         {
           list.map((item, index) => {
             return (
-              <ListItem key={index}>
-                <img className='pic' src={item.imgUrl} alt={item.title} />
-                <ListInfo>
-                  <h3 className='title'>{item.title}</h3>
-                  <p className='desc'>{item.desc}</p>
-                </ListInfo>
-              </ListItem>
+              <Link to={'/detail/' + item.id} key={index}>
+                <ListItem>
+                  <img className='pic' src={item.imgUrl} alt={item.title} />
+                  <ListInfo>
+                    <h3 className='title'>{item.title}</h3>
+                    <p className='desc'>{item.desc}</p>
+                  </ListInfo>
+                </ListItem>
+              </Link>
             )
           })
         }
