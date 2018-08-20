@@ -18,6 +18,7 @@ import {
 } from './style';
 
 import { headerActions } from './store';
+import { loginActions } from '../../pages/login/store';
 
 class Jheader extends Component {
 
@@ -53,7 +54,7 @@ class Jheader extends Component {
   }
 
   render() {
-    const { focused, list, handleIptFocus, handleIptBlur } = this.props;
+    const { focused, list, handleIptFocus, handleIptBlur, login, logout } = this.props;
     return (
       <HeaderWrapper>
         <Link to="/">
@@ -62,7 +63,11 @@ class Jheader extends Component {
         <Nav>
           <NavItem className="left active">首页</NavItem>
           <NavItem className="left">下载APP</NavItem>
-          <NavItem className="right">登陆</NavItem>
+          {
+						login ? 
+							<NavItem onClick={logout} className='right'>退出</NavItem> : 
+							<Link to='/login'><NavItem className='right'>登陆</NavItem></Link>
+					}
           <NavItem className="right">
             <i className="iconfont">&#xe636;</i>
           </NavItem>
@@ -87,9 +92,10 @@ class Jheader extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {...(state.toJS().headerReducer)}
-  // return {focused: state.get('headerReducer').get('focused')}
-  // return {...state.headerReducer}
+  return {
+    ...(state.toJS().headerReducer),
+    login: state.toJS().loginReducer.login
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -115,6 +121,9 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         dispatch(headerActions.handleChangePage(1));
       }
+    },
+    logout() {
+      dispatch(loginActions.logout())
     }
   }
 }

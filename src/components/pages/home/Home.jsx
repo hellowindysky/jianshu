@@ -36,7 +36,7 @@ class Home extends Component {
           <Recommend />
 					<Writer />
         </HomeRight>
-        {this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : null}
+        {this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>∧</BackTop> : null}
       </HomeWrapper>
     )
   }
