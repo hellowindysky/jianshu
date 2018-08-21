@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Jheader from './components/common/jheader/Jheader';
 import Home from './components/pages/home/Home';
-import Detail from './components/pages/detail/Detail';
+import Detail from './components/pages/detail/loadable';
 import Write from './components/pages/write/Write';
 import Login from './components/pages/login/Login';
 
