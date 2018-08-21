@@ -81,10 +81,15 @@ class Jheader extends Component {
           </SearchWrapper>
         </Nav>
         <Addition className="aaa">
-          <Button className="writting">
-            <i className="iconfont">&#xe615;</i>写文章
-          </Button>
-          <Button className="reg">注册</Button>
+          <Link to="/write">
+            <Button className="writting">
+              <i className="iconfont">&#xe615;</i>写文章
+            </Button>
+          </Link>
+          <Link to='/login'>
+            <Button className="reg">注册</Button>
+          </Link>
+          
         </Addition>
       </HeaderWrapper>
     );
